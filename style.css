@@ -1,0 +1,364 @@
+/* 기본 세팅 및 타이포그래피 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: #050505;
+    color: #ffffff;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+}
+
+/* 상단 글로벌 헤더 */
+.header {
+    padding: 35px 4%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.logo {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    pointer-events: auto;
+}
+
+/* ── ★ 타이틀 + 메뉴 통합 고정 컨테이너 ★ ── */
+.ui-fixed-container {
+    position: fixed;
+    top: 32%;
+    left: 4%;
+    transform: translate(0, -50%);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 45px;
+    pointer-events: auto;
+    width: auto;
+}
+
+/* 상단 거대 타이틀 */
+.moving-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3.5rem, 9.5vw, 11rem); 
+    font-weight: 800;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: #ffffff;
+    white-space: nowrap; /* PC에서는 줄바꿈 방지 유지 */
+    transform-origin: left center;
+}
+
+/* 카테고리 메뉴 */
+.moving-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transform-origin: left center;
+}
+
+.nav-group-main, .nav-group-sns {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-item {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: #ffffff;
+}
+
+.nav-item.sns {
+    font-size: 0.85rem;
+    color: #444;
+}
+.nav-item.sns:hover {
+    color: #bbb;
+}
+
+/* ── ★ 우측 하단 안착 시 매커니즘 (PC 전용 스타일) ★ ── */
+.ui-fixed-container.scrolled {
+    position: fixed;
+    top: auto;
+    bottom: 50px;
+    left: auto;
+    right: 4%;
+    transform: translate(0, 0);
+    align-items: flex-end;
+    z-index: 99;
+    gap: 25px;
+}
+
+.ui-fixed-container.scrolled .moving-title {
+    transform: scale(0.24);
+    transform-origin: right bottom;
+    color: #333333; 
+    line-height: 0.9;
+}
+
+.ui-fixed-container.scrolled .moving-nav {
+    align-items: flex-end;
+}
+
+.ui-fixed-container.scrolled .nav-group-main,
+.ui-fixed-container.scrolled .nav-group-sns {
+    gap: 24px;
+}
+
+.ui-fixed-container.scrolled .nav-item {
+    font-size: 0.85rem;
+    color: #555;
+}
+.ui-fixed-container.scrolled .nav-item:hover,
+.ui-fixed-container.scrolled .nav-item.active {
+    color: #ffffff;
+}
+.ui-fixed-container.scrolled .nav-item.sns {
+    font-size: 0.75rem;
+    color: #333;
+}
+
+/* ── 420 비대칭 레이아웃 공간 구성 ── */
+.main-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.left-content-stream {
+    width: 58%;
+    padding-left: 4%;
+    padding-right: 5%;
+    margin-top: 65vh;
+    border-right: 1px solid #151515;
+    z-index: 10;
+}
+
+.right-empty-space {
+    width: 42%;
+}
+
+/* 포트폴리오 카드 */
+.portfolio-item {
+    margin-bottom: 160px;
+}
+
+.image-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 10; 
+    overflow: hidden;
+    background-color: #0b0b0b;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center;
+    filter: grayscale(100%) brightness(0.6) contrast(1.15); 
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+
+.portfolio-item:hover .image-wrapper img {
+    transform: scale(1.02);
+    filter: grayscale(0%) brightness(0.95) contrast(1.05);
+}
+
+/* 리스트 정보 텍스트 */
+.item-info {
+    display: flex;
+    align-items: flex-start;
+}
+
+.item-number {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #252525;
+    margin-right: 25px;
+    margin-top: 4px;
+}
+
+.item-title {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.3rem, 2vw, 2rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: #444444;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                letter-spacing 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                color 0.4s ease;
+    transform-origin: left center;
+}
+
+.item-category {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #252525;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.portfolio-item:hover .item-title {
+    color: #ffffff;
+    letter-spacing: 0.02em;
+    transform: scale(1.03);
+}
+
+/* 푸터 */
+.footer {
+    padding: 60px 4%;
+    border-top: 1px solid #111;
+    font-size: 0.75rem;
+    color: #222;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    background-color: #050505;
+    position: relative;
+    z-index: 20;
+}
+
+/* 라이트박스 줌 모달 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 200; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.98); 
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    max-width: 85%;
+    max-height: 85vh;
+    object-fit: contain;
+    transform: scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #555;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.modal-close:hover {
+    color: #fff;
+}
+
+/* ── ★ [대폭 수정] 모바일/태블릿 가독성 가드 완벽 구현 ★ ── */
+@media (max-width: 1024px) {
+    .main-layout {
+        flex-direction: column;
+    }
+    .left-content-stream {
+        width: 100%;
+        border-right: none;
+        padding-right: 4%;
+        margin-top: 55vh; /* 모바일에서 첫 콘텐츠 위치 안정화 */
+    }
+    .right-empty-space {
+        display: none;
+    }
+
+    /* 모바일 환경에서의 초기 UI 배치 및 강제 자름 방지 */
+    .ui-fixed-container {
+        top: 25%;
+        left: 5%;
+        width: 90% !important; /* 가로폭 제한을 풀어주어 화면 안으로 안착 */
+        gap: 30px;
+    }
+
+    .moving-title {
+        font-size: 2.4rem !important; /* 모바일에 알맞은 콤팩트한 사이즈 고정 */
+        white-space: normal !important; /* 글자가 잘리지 않고 줄바꿈 되도록 허용 */
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+        width: 100%;
+    }
+
+    /* 네비게이션 간격 좁혀서 한 화면에 다 들어오도록 유도 */
+    .moving-nav {
+        gap: 12px;
+        width: 100%;
+    }
+    .nav-group-main, .nav-group-sns {
+        gap: 18px;
+        flex-wrap: wrap; /* 좁은 화면에서 메뉴가 삐져나가지 않고 아래로 떨어지게 */
+    }
+    .nav-item {
+        font-size: 0.85rem !important;
+    }
+    .nav-item.sns {
+        font-size: 0.75rem !important;
+    }
+
+    /* ── 스크롤 다운되어 우측 하단 안착 시 모바일 방어선 ── */
+    .ui-fixed-container.scrolled {
+        bottom: 30px;
+        right: 5%;
+        gap: 15px;
+    }
+    .ui-fixed-container.scrolled .moving-title {
+        transform: scale(0.45) !important; /* 모바일 스크립트 대응 척도 매칭 */
+        color: #444444; /* 모바일 다크모드 배경 가독성용으로 약간 더 밝게 조정 */
+    }
+    .ui-fixed-container.scrolled .nav-item {
+        font-size: 0.75rem !important;
+    }
+    
+    /* 포트폴리오 카드 리스트 모바일 최적화 */
+    .portfolio-item {
+        margin-bottom: 80px; /* 모바일에서는 여백을 조금 더 촘촘하게 */
+    }
+    .image-wrapper {
+        margin-bottom: 15px;
+    }
+    .item-title {
+        font-size: 1.25rem !important; /* 포트폴리오 제목 크기 최적화 */
+        word-break: keep-all; /* 한글 영문 단어 깨짐 방지 */
+    }
+}

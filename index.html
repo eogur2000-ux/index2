@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TETO DESIGN STUDIO</title>
+    <!-- 고급 하이엔드 감성의 구글 웹폰트 연동 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ── ★ 420 스튜디오 완벽 구현: 가독성 보장형 UI 컨테이너 ★ ── -->
+    <div id="moving-ui-container" class="ui-fixed-container">
+        <!-- 1. 타이틀 -->
+        <h1 id="moving-title" class="moving-title">
+            <span class="line-1">TETO DESIGN</span><br>
+            <span class="line-2">STUDIO</span>
+        </h1>
+        
+        <!-- 2. 가독성 최적화 네비게이션 메뉴 -->
+        <nav id="moving-nav" class="moving-nav">
+            <div class="nav-group-main">
+                <a href="#" class="nav-item active">WORK</a>
+                <a href="#" class="nav-item">ABOUT</a>
+                <a href="#" class="nav-item">CONTACT</a>
+            </div>
+            <div class="nav-group-sns">
+                <a href="https://instagram.com" target="_blank" class="nav-item sns">INSTAGRAM</a>
+                <a href="#" class="nav-item sns">KAKAOTALK</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 상단 헤더 영역 (로고만 좌측 상단 노출) -->
+    <header class="header">
+        <div class="logo">TETO®</div>
+    </header>
+
+    <!-- 메인 레이아웃 (좌측: 프리미엄 인테리어 스트림 / 우측: 여백) -->
+    <main class="main-layout">
+        
+        <!-- 좌측 포트폴리오 스트림 -->
+        <section class="left-content-stream">
+            
+            <!-- 프로젝트 1 -->
+            <div class="portfolio-item">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop" alt="Modern Architecture Living Space" class="zoomable-img">
+                </div>
+                <div class="item-info">
+                    <span class="item-number">01</span>
+                    <div>
+                        <h3 class="item-title">MINIMALIST RESIDENTIAL LOUNGE</h3>
+                        <p class="item-category">Residence / Seoul</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 프로젝트 2 -->
+            <div class="portfolio-item">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop" alt="Modern Minimal Architecture Interior" class="zoomable-img">
+                </div>
+                <div class="item-info">
+                    <span class="item-number">02</span>
+                    <div>
+                        <h3 class="item-title">ARCHITECTURAL HEADQUARTERS</h3>
+                        <p class="item-category">Commercial / Busan</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 프로젝트 3 -->
+            <div class="portfolio-item">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" alt="High-end Luxury Timber Kitchen" class="zoomable-img">
+                </div>
+                <div class="item-info">
+                    <span class="item-number">03</span>
+                    <div>
+                        <h3 class="item-title">PREMIUM TIMBER KITCHEN</h3>
+                        <p class="item-category">Residence / Jeju</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 프로젝트 4 -->
+            <div class="portfolio-item">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200&auto=format&fit=crop" alt="Modern Minimalist Interior Bedroom" class="zoomable-img">
+                </div>
+                <div class="item-info">
+                    <span class="item-number">04</span>
+                    <div>
+                        <h3 class="item-title">CONTEMPORARY SHOWROOM</h3>
+                        <p class="item-category">Exhibition / Seongsu</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 우측 공간: 비대칭 레이아웃 유지를 위한 빈 여백 공간 -->
+        <section class="right-empty-space"></section>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <p>&copy; 2026 TETO DESIGN STUDIO. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <!-- 이미지 클릭 시 확대되는 모달 팝업 -->
+    <div id="image-modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modal-target-img">
+    </div>
+
+    <!-- 인터랙션 스크립트 (모바일 최적화 대응 완료) -->
+    <script>
+        const uiContainer = document.getElementById('moving-ui-container');
+        const title = document.getElementById('moving-title');
+        const nav = document.getElementById('moving-nav');
+        
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.scrollY;
+            let progress = Math.min(scrollTop / 450, 1); 
+            
+            // 모바일 환경(768px 이하) 체크
+            const isMobile = window.innerWidth <= 768;
+            
+            if (progress < 1) {
+                uiContainer.classList.remove('scrolled');
+                uiContainer.style.position = 'fixed';
+                
+                // 1. 컨테이너 위치 이동 (PC와 모바일의 좌표 이동폭을 분리)
+                if (isMobile) {
+                    // 모바일: 우측으로 너무 밀리지 않도록 가로 이동 제한 (4% -> 40%)
+                    uiContainer.style.top = `calc(20% + (${progress} * 60%))`; 
+                    uiContainer.style.left = `calc(5% + (${progress} * 35%))`;
+                } else {
+                    // PC 기동 규격 유지
+                    uiContainer.style.top = `calc(32% + (${progress} * 46%))`; 
+                    uiContainer.style.left = `calc(4% + (${progress} * 74%))`;
+                }
+                
+                // 2. 타이틀 크기 변환 (모바일에서는 글자가 너무 작아져 깨지지 않도록 최소 스케일 방어)
+                let minScale = isMobile ? 0.45 : 0.24; // 모바일은 최대 55%만 축소되도록 제한
+                title.style.transform = `scale(${1 - (progress * (1 - minScale))})`;
+                title.style.lineHeight = `${0.85 - (progress * 0.05)}`;
+                
+                // 3. 네비게이션 메뉴 변환
+                nav.style.alignItems = progress > 0.5 ? 'flex-end' : 'flex-start';
+                uiContainer.style.alignItems = progress > 0.5 ? 'flex-end' : 'flex-start';
+            } else {
+                uiContainer.classList.add('scrolled');
+                uiContainer.style = ''; 
+                title.style = '';
+                nav.style = '';
+            }
+            
+            if (scrollTop === 0) {
+                uiContainer.classList.remove('scrolled');
+            }
+        });
+
+        // 이미지 라이트박스 확대 기능
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-target-img');
+        const closeBtn = document.querySelector('.modal-close');
+        const zoomImages = document.querySelectorAll('.zoomable-img');
+
+        zoomImages.forEach(img => {
+            img.addEventListener('click', () => {
+                modal.classList.add('show');
+                modalImg.src = img.src;
+            });
+        });
+
+        closeBtn.addEventListener('click', () => modal.classList.remove('show'));
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) modal.classList.remove('show');
+        });
+    </script>
+</body>
+</html>
